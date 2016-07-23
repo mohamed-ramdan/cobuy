@@ -20,6 +20,8 @@ class Application_Form_UserForm extends Zend_Form
         $firstName->setLabel('First Name: ');
         // First Name is required
         $firstName->setRequired();
+        // filter to remove any spaces before or after the text 
+        $firstName->addFilter('StringTrim');
         
         //Last Name element creation
         $lastName = new Zend_Form_Element_Text("lastName");
@@ -27,6 +29,8 @@ class Application_Form_UserForm extends Zend_Form
         $lastName->setLabel('Last Name: ');
         // Last Name is required
         $lastName->setRequired();
+        // filter to remove any spaces before or after the text 
+        $lastName->addFilter('StringTrim');
         
         //E-Mail element creation
         $email = new Zend_Form_Element_Text("email");
@@ -34,13 +38,32 @@ class Application_Form_UserForm extends Zend_Form
         $email->setLabel('E-Mail: ');
         //E-Mail is required
         $email->setRequired();
-
+        // filter to remove any spaces before or after the text 
+        $email->addFilter('StringTrim');
+        // Validation to check if the input is a valid E-Mail address
+        $validator = new Zend_Validate_EmailAddress();
+        if ($validator->isValid($email)) 
+        {
+            // email appears to be valid
+        } 
+        else
+        {
+            // email is invalid; print the reasons
+            foreach ($validator->getMessages() as $message) 
+            {
+                echo "$message\n";
+            }
+        }
+        $email->addValidator($validator);
+        
         //Address element creation
         $address = new Zend_Form_Element_Text("address");
         //E-Mail label
         $address->setLabel('Address: ');
         //E-Mail is required
         $address->setRequired();
+        // filter to remove any spaces before or after the text 
+        $address->addFilter('StringTrim');
         
         //Password element creation
         $password = new Zend_Form_Element_Password("password");
@@ -48,6 +71,8 @@ class Application_Form_UserForm extends Zend_Form
         $password->setLabel('Password: ');
         //Password is required
         $password->setRequired();
+        // valitation to asure that the minimum linth is 8 chars
+        $password->addValidator('StringLength', false, array(8));
         
         //Confirm Password element creation
         $confirmPassword = new Zend_Form_Element_Password("confirmPassword");
@@ -55,13 +80,24 @@ class Application_Form_UserForm extends Zend_Form
         $confirmPassword->setLabel('Confirm Password: ');
         //Confirm Password is required
         $confirmPassword->setRequired();
-        
+        // valitation to asure that the minimum linth is 8 chars
+        $confirmPassword->addValidator('StringLength', false, array(8));
+
         //mobil1 element creation
         $mobil1 = new Zend_Form_Element_Text("mobil1");
         //mobil1 label
         $mobil1->setLabel('Mobile Number: ');
         //mobil1 is required
         $mobil1->setRequired();
+        // filter to remove any spaces before or after the text 
+        $mobil1->addFilter('StringTrim');
+        // Validation to check if the input is a valid mobile number
+        $mobil1->addValidators(array('Digits',
+            array(
+                'regex', false,
+                array(
+                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
+                    'messages' => 'This is not a mobile number!'))));
         
         //mobil2 element creation
         $mobil2 = new Zend_Form_Element_Text("mobil2");
@@ -69,7 +105,16 @@ class Application_Form_UserForm extends Zend_Form
         $mobil2->setLabel('Another Mobile Number: ');
         //mobil1 is not required
         //$mobil2->setRequired();
-        
+        // filter to remove any spaces before or after the text 
+        $mobil2->addFilter('StringTrim');
+        // Validation to check if the input is a valid mobile number
+        $mobil2->addValidators(array('Digits',
+            array(
+                'regex', false,
+                array(
+                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
+                    'messages' => 'This is not a mobile number!'))));
+
         //photo element creation
         $photo = new Zend_Form_Element_File('photo', array(
             'label' => 'Picture',
@@ -128,7 +173,7 @@ class Application_Form_UserForm extends Zend_Form
             $mobil1,
             $mobil2,
             $photo,
-            $is_organization_user,
+            $is_product_owner,
             $submit,
             $reset
         ));

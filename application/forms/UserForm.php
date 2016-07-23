@@ -11,7 +11,7 @@ class Application_Form_UserForm extends Zend_Form
          */
         
         //userID element should be auto incermented by DB 
-        $userID = new Zend_Form_element_Hidden('userID');
+        $userID = new Zend_Form_Element_Hidden('userID');
         
         
         //Fisrt Name element creation
@@ -22,6 +22,10 @@ class Application_Form_UserForm extends Zend_Form
         $firstName->setRequired();
         // filter to remove any spaces before or after the text 
         $firstName->addFilter('StringTrim');
+        // use bootstrap css classes
+        $firstName->setAttrib("class", "form-control");
+        // add placeholder for element.
+        $firstName->setAttrib("placeholder", "example: Mohamed");
         
         //Last Name element creation
         $lastName = new Zend_Form_Element_Text("lastName");
@@ -31,6 +35,10 @@ class Application_Form_UserForm extends Zend_Form
         $lastName->setRequired();
         // filter to remove any spaces before or after the text 
         $lastName->addFilter('StringTrim');
+        // use bootstrap css classes
+        $lastName->setAttrib("class", "form-control");
+        // add placeholder for element.
+        $lastName->setAttrib("placeholder", "example: Ahmed");
         
         //E-Mail element creation
         $email = new Zend_Form_Element_Text("email");
@@ -55,6 +63,10 @@ class Application_Form_UserForm extends Zend_Form
             }
         }
         $email->addValidator($validator);
+        // use bootstrap css classes
+        $email->setAttrib("class", "form-control");
+        // add placeholder for element.
+        $email->setAttrib("placeholder", "example: anything@domain.com");
         
         //Address element creation
         $address = new Zend_Form_Element_Text("address");
@@ -64,6 +76,12 @@ class Application_Form_UserForm extends Zend_Form
         $address->setRequired();
         // filter to remove any spaces before or after the text 
         $address->addFilter('StringTrim');
+        // use bootstrap css classes
+        $address->setAttrib("class", "form-control");
+        // add placeholder for element.
+        $address->setAttrib("placeholder", "example: Cairo, Egypt...");
+        // numbers of rows
+        $address->setAttrib("rows", "6");
         
         //Password element creation
         $password = new Zend_Form_Element_Password("password");
@@ -73,6 +91,8 @@ class Application_Form_UserForm extends Zend_Form
         $password->setRequired();
         // valitation to asure that the minimum linth is 8 chars
         $password->addValidator('StringLength', false, array(8));
+        // use bootstrap css classes
+        $password->setAttrib("class", "form-control");
         
         //Confirm Password element creation
         $confirmPassword = new Zend_Form_Element_Password("confirmPassword");
@@ -82,6 +102,8 @@ class Application_Form_UserForm extends Zend_Form
         $confirmPassword->setRequired();
         // valitation to asure that the minimum linth is 8 chars
         $confirmPassword->addValidator('StringLength', false, array(8));
+        // use bootstrap css classes
+        $confirmPassword->setAttrib("class", "form-control");
 
         //mobil1 element creation
         $mobil1 = new Zend_Form_Element_Text("mobil1");
@@ -98,6 +120,8 @@ class Application_Form_UserForm extends Zend_Form
                 array(
                     'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
                     'messages' => 'This is not a mobile number!'))));
+        // use bootstrap css classes
+        $mobil1->setAttrib("class", "form-control");
         
         //mobil2 element creation
         $mobil2 = new Zend_Form_Element_Text("mobil2");
@@ -114,6 +138,8 @@ class Application_Form_UserForm extends Zend_Form
                 array(
                     'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
                     'messages' => 'This is not a mobile number!'))));
+        // use bootstrap css classes
+        $mobil2->setAttrib("class", "form-control");
 
         //photo element creation
         $photo = new Zend_Form_Element_File('photo', array(
@@ -126,6 +152,8 @@ class Application_Form_UserForm extends Zend_Form
                 array('Extension', false, 'gif,jpg,png'),
             )
         ));
+        // use bootstrap css classes
+        $photo->setAttrib("class", "form-control");
         
         /*Product Owner that will do the product configuration
          * Yes means that this user is product owner and he will do the product configuration 
@@ -144,6 +172,8 @@ class Application_Form_UserForm extends Zend_Form
         $is_product_owner->setValue("No");
         // Product Owner Radio is requried
         $is_product_owner->setRequired();
+        // use bootstrap css classes
+        //$is_product_owner->setAttrib("class", "form-control");
         
         /*
          * Is Blocked and Is Admin attributes will handled by the system
@@ -152,12 +182,16 @@ class Application_Form_UserForm extends Zend_Form
         //Submit button creation
         $submit = new Zend_Form_Element_Submit("submit");
         //Submit button value
-        $submit->setValue("Save");        
+        $submit->setValue("Save");
+        // use bootstrap css classes
+        $submit->setAttrib("class", "btn btn-success");
         
         //Reset button creation
         $reset = new Zend_Form_Element_Reset("reset");
         //Reset button value
         $reset->setValue("Cancel");
+        // use bootstrap css classes
+        $reset->setAttrib("class", "btn btn-danger");
         
         /*
          * Add the Elements to the User Form

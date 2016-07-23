@@ -16,6 +16,7 @@ class UserController extends Zend_Controller_Action
     public function createAction()
     {
         // action body
+        $this->view->form  = new Application_Form_UserForm();
     }
 
     public function retrieveAction()

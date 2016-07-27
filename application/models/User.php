@@ -43,13 +43,12 @@ class Application_Model_User extends Zend_Db_Table_Abstract
         $row->fname = $userData['fname'];
         //lname is the same as the column name is database table.
         $row->lname = $userData['lname'];
-        //gender is the same as the column name is database table.
-        $row->gender = $userData['gender'];
-        //mail is the same as the column name is database table.
-        $row->mail = $userData['mail'];
-        
-        // Other elements here pending Form and database creation.
-        
+        //email is the same as the column name is database table.
+        $row->email = $userData['email'];
+        //photo is the same as the column name is database table.
+        $row->photo = $userData['photo'];
+        //password is the same as the column name is database table.
+        $row->password = $userData['password'];
         
         // save (insert) into the table.
         $row->save();

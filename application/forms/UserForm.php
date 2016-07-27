@@ -10,6 +10,9 @@ class Application_Form_UserForm extends Zend_Form
          * Form Elements & Other Definitions Here ... 
          */
         
+        //Set Submission method to POST
+        $this->setMethod("POST");
+        
         //userID element should be auto incermented by DB 
         $userID = new Zend_Form_Element_Hidden('userID');
         
@@ -68,20 +71,20 @@ class Application_Form_UserForm extends Zend_Form
         // add placeholder for element.
         $email->setAttrib("placeholder", "example: anything@domain.com");
         
-        //Address element creation
-        $address = new Zend_Form_Element_Text("address");
-        //E-Mail label
-        $address->setLabel('Address: ');
-        //E-Mail is required
-        $address->setRequired();
-        // filter to remove any spaces before or after the text 
-        $address->addFilter('StringTrim');
-        // use bootstrap css classes
-        $address->setAttrib("class", "form-control");
-        // add placeholder for element.
-        $address->setAttrib("placeholder", "example: Cairo, Egypt...");
-        // numbers of rows
-        $address->setAttrib("rows", "6");
+//        //Address element creation
+//        $address = new Zend_Form_Element_Text("address");
+//        //E-Mail label
+//        $address->setLabel('Address: ');
+//        //E-Mail is required
+//        $address->setRequired();
+//        // filter to remove any spaces before or after the text 
+//        $address->addFilter('StringTrim');
+//        // use bootstrap css classes
+//        $address->setAttrib("class", "form-control");
+//        // add placeholder for element.
+//        $address->setAttrib("placeholder", "example: Cairo, Egypt...");
+//        // numbers of rows
+//        $address->setAttrib("rows", "6");
         
         //Password element creation
         $password = new Zend_Form_Element_Password("password");
@@ -105,41 +108,41 @@ class Application_Form_UserForm extends Zend_Form
         // use bootstrap css classes
         $confirmPassword->setAttrib("class", "form-control");
 
-        //mobil1 element creation
-        $mobil1 = new Zend_Form_Element_Text("mobil1");
-        //mobil1 label
-        $mobil1->setLabel('Mobile Number: ');
-        //mobil1 is required
-        $mobil1->setRequired();
-        // filter to remove any spaces before or after the text 
-        $mobil1->addFilter('StringTrim');
-        // Validation to check if the input is a valid mobile number
-        $mobil1->addValidators(array('Digits',
-            array(
-                'regex', false,
-                array(
-                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
-                    'messages' => 'This is not a mobile number!'))));
-        // use bootstrap css classes
-        $mobil1->setAttrib("class", "form-control");
-        
-        //mobil2 element creation
-        $mobil2 = new Zend_Form_Element_Text("mobil2");
-        //mobil2 label
-        $mobil2->setLabel('Another Mobile Number: ');
-        //mobil1 is not required
-        //$mobil2->setRequired();
-        // filter to remove any spaces before or after the text 
-        $mobil2->addFilter('StringTrim');
-        // Validation to check if the input is a valid mobile number
-        $mobil2->addValidators(array('Digits',
-            array(
-                'regex', false,
-                array(
-                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
-                    'messages' => 'This is not a mobile number!'))));
-        // use bootstrap css classes
-        $mobil2->setAttrib("class", "form-control");
+//        //mobil1 element creation
+//        $mobil1 = new Zend_Form_Element_Text("mobil1");
+//        //mobil1 label
+//        $mobil1->setLabel('Mobile Number: ');
+//        //mobil1 is required
+//        $mobil1->setRequired();
+//        // filter to remove any spaces before or after the text 
+//        $mobil1->addFilter('StringTrim');
+//        // Validation to check if the input is a valid mobile number
+//        $mobil1->addValidators(array('Digits',
+//            array(
+//                'regex', false,
+//                array(
+//                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
+//                    'messages' => 'This is not a mobile number!'))));
+//        // use bootstrap css classes
+//        $mobil1->setAttrib("class", "form-control");
+//        
+//        //mobil2 element creation
+//        $mobil2 = new Zend_Form_Element_Text("mobil2");
+//        //mobil2 label
+//        $mobil2->setLabel('Another Mobile Number: ');
+//        //mobil1 is not required
+//        //$mobil2->setRequired();
+//        // filter to remove any spaces before or after the text 
+//        $mobil2->addFilter('StringTrim');
+//        // Validation to check if the input is a valid mobile number
+//        $mobil2->addValidators(array('Digits',
+//            array(
+//                'regex', false,
+//                array(
+//                    'pattern' => '/(?([0-9]{3}))?([ .-]?)([0-9]{3})\2([0-9]{4})/',
+//                    'messages' => 'This is not a mobile number!'))));
+//        // use bootstrap css classes
+//        $mobil2->setAttrib("class", "form-control");
 
         //photo element creation
         $photo = new Zend_Form_Element_File('photo', array(
@@ -160,24 +163,18 @@ class Application_Form_UserForm extends Zend_Form
          * No means that this user is not product owner and he will share the price with other user
          * Default value is No
          */
-        // Product Owner radio creation
-        $is_product_owner = new Zend_Form_Element_Radio("productOwner");
-        // Product Owner label
-        $is_product_owner->setLabel("are you the Product Owner?");
-        // add Yes option
-        $is_product_owner->addMultiOption("Yes", "true");
-        // add No option
-        $is_product_owner->addMultiOption("No", "false");
-        // Set default value
-        $is_product_owner->setValue("No");
-        // Product Owner Radio is requried
-        $is_product_owner->setRequired();
-        // use bootstrap css classes
-        //$is_product_owner->setAttrib("class", "form-control");
-        
-        /*
-         * Is Blocked and Is Admin attributes will handled by the system
-         */
+//        // Product Owner radio creation
+//        $is_product_owner = new Zend_Form_Element_Radio("isProductOwner");
+//        // Product Owner label
+//        $is_product_owner->setLabel("are you the Product Owner?");
+//        // add Yes option
+//        $is_product_owner->addMultiOption("Yes", "true");
+//        // add No option
+//        $is_product_owner->addMultiOption("No", "false");
+//        // Set default value
+//        $is_product_owner->setValue("No");
+//        // Product Owner Radio is requried
+//        $is_product_owner->setRequired();
         
         //Submit button creation
         $submit = new Zend_Form_Element_Submit("submit");
@@ -200,28 +197,17 @@ class Application_Form_UserForm extends Zend_Form
             $userID,
             $firstName,
             $lastName,
-            $address,
+            //$address,
             $email,
             $password,
             $confirmPassword,
-            $mobil1,
-            $mobil2,
+            //$mobil1,
+            //$mobil2,
             $photo,
-            $is_product_owner,
+            //$is_product_owner,
             $submit,
             $reset
         ));
-        
-                
-        /*
-         * CSS Designs
-         */
-        // this line class="form-element" is just CSS design.
-//        $firstName->setAttrib("class", "form-element");
-//        $lastName->setAttrib("class", "form-element");
-//        $email->setAttrib("class", "form-element");
-//        $submit->setAttrib("class", "btn btn-success");
-//        $reset->setAttrib("class", "btn btn-danger");
         
     } 
 }

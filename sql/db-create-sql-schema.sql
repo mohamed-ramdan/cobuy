@@ -28,6 +28,7 @@ CREATE TABLE users (
 --create table product
 CREATE TABLE products(
     id INT NOT NULL PRIMARY KEY,
+    name VARCHAR(50),
     description VARCHAR(500),
     photo VARCHAR(300),
     price VARCHAR(100)

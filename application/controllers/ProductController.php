@@ -11,6 +11,8 @@ class ProductController extends Zend_Controller_Action
     public function indexAction()
     {
         // action body
+        $form = new Application_Form_CreataProductForm();
+        $this->view->form = $form;
     }
 
     public function createAction()
@@ -33,8 +35,18 @@ class ProductController extends Zend_Controller_Action
         // action body
     }
 
+    public function showAction()
+    {
+        // action body
+        $form = new Application_Form_ProductForm();
+        $this->view->form = $form;
+        
+    }
+
 
 }
+
+
 
 
 

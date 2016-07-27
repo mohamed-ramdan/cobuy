@@ -7,10 +7,20 @@
 
 
 
-$url = "https://www.youtube.com/watch?v=TlGFWCgoMSw";
+$url = "https://www.amazon.com/gp/product/B0133YA86K/ref=s9_hps_bw_g241_i2/154-3304565-7793948?pf_rd_m=ATVPDKIKX0DER&pf_rd_s=merchandised-search-4&pf_rd_r=WJHCVHY0919E81V8N38F&pf_rd_t=101&pf_rd_p=2484600682&pf_rd_i=6358539011";
 $c = curl_init($url);
 curl_setopt($c, CURLOPT_RETURNTRANSFER, TRUE);
 $html = curl_exec($c);
+
+
+$parsed = array();
+parse_str(curl_exec($c), $parsed);
+print_r($parsed);exit();
+
+
+//var_dump($html);
+//exit();
+
 if (curl_error($c))
     die(curl_error($c));
 
